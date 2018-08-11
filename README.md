@@ -3,6 +3,8 @@ The following describes the setup for an experiment to determine the IP addresse
 
 In this case, I'd like to know the IP addresses associated with DynamoDB in the us-east-1 region. A shell script runs on an EC2 instance in an endless loop. For each iteration of the loop, we call `dig` and combine the result with various other metadata we're interested in. We then persist in a DynamoDB table to be queried later and perhaps do things like cross-reference the IP address and timestamp with Flow Log records.
 
+Although this is a crude implementation, there are no dependencies outside of an EC2 instance and an attached IAM role which should have permissions to update the DynamoDB table.
+
 
 ## Create DynamoDB Table
 
