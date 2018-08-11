@@ -1,5 +1,37 @@
 # aws-poller
 
+## Create DynamoDB Table
+
+The following is a CloudFormation resource snippet which you can use to create the table:
+
+```
+{
+  "Type" : "AWS::DynamoDB::Table",
+  "Properties" : {
+    "TableName" : "aws.dynamodb.ips",
+    "AttributeDefinitions" : [ {
+      "AttributeName" : "dt",
+      "AttributeType" : "S"
+    }, {
+      "AttributeName" : "id",
+      "AttributeType" : "S"
+    } ],
+    "KeySchema" : [ {
+      "AttributeName" : "id",
+      "KeyType" : "HASH"
+    }, {
+      "AttributeName" : "dt",
+      "KeyType" : "RANGE"
+    } ],
+    "ProvisionedThroughput" : {
+      "ReadCapacityUnits" : 1,
+      "WriteCapacityUnits" : 1
+    }
+  }
+}
+```
+
+
 ## dig.sh
 
 Create `/home/ec2-user/dig.sh` with the following:
