@@ -135,4 +135,4 @@ To restart awslogs on Amazon Linux 2: `sudo systemctl start awslogsd`
 ## TODO
 - Add DynamoDB conditional update expression to prevent duplicate IPs within the same predetermined time period.
 - Parameterize the aws service and region.
-- Run in parallel from and to multiple regions for more comphrehensive data.
+- Run in parallel from multiple regions and availability zones for more comphrehensive data.
