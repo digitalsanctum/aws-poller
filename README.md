@@ -2,7 +2,16 @@
 
 ## Create DynamoDB Table
 
-The following is a CloudFormation resource snippet which you can use to create the table:
+Use the follow aws cli command to create the table
+
+```
+aws dynamodb create-table --table-name aws.dynamodb.ips \
+ --key-schema '[{"AttributeName":"id","KeyType":"HASH"},{"AttributeName":"dt","KeyType":"RANGE"}]' \
+ --attribute-definitions '[{"AttributeName":"dt","AttributeType":"S"},{"AttributeName":"id","AttributeType":"S"}]' \
+ --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
+``` 
+
+Or, use the following CloudFormation (JSON) resource snippet:
 
 ```
 {
@@ -30,7 +39,26 @@ The following is a CloudFormation resource snippet which you can use to create t
   }
 }
 ```
+Or, use the following CloudFormation (YAML) resource snippet:
 
+```
+Type: "AWS::DynamoDB::Table"
+Properties:
+  TableName: "aws.dynamodb.ips"
+  AttributeDefinitions:
+  - AttributeName: "dt"
+    AttributeType: "S"
+  - AttributeName: "id"
+    AttributeType: "S"
+  KeySchema:
+  - AttributeName: "id"
+    KeyType: "HASH"
+  - AttributeName: "dt"
+    KeyType: "RANGE"
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
+```    
 
 ## dig.sh
 
