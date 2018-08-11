@@ -118,3 +118,13 @@ initial_position = start_of_file
 log_group_name = /home/ec2-user/dig
 region=us-west-2
 ```
+If you want to send CW logs to a region other than us-east-1 (the default), then update `/etc/awslogs/awscli.conf`:
+
+```
+[plugins]
+cwlogs = cwlogs
+[default]
+region = us-west-2
+```
+
+To restart awslogs on Amazon Linux 2: `sudo systemctl start awslogsd`
