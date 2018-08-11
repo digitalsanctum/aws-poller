@@ -1,4 +1,9 @@
 # aws-poller
+The following describes the setup for an experiment whose purpose is to determine the IP addresses of a specific AWS service.
+
+In this case, I'd like to know the IP addresses associated with DynamoDB in the us-east-1 region.
+
+
 
 ## Create DynamoDB Table
 
@@ -91,18 +96,15 @@ do
   --expression-attribute-names "{\"#ip\":\"ip\", \"#svc\": \"svc\", \"#reg\": \"reg\", \"#vpc\": \"vpc\"}" \
   --expression-attribute-values "{\":ip\":{\"S\":\"${IP}\"}, \":svc\":{\"S\":\"${SVC}\"}, \":reg\":{\"S\":\"${REG}\"}, \":vpc\":{\"S\":\"${VPC}\"}}" \
   --return-values ALL_NEW --region us-west-2 >> dig.log)
-  echo $TTL
-  echo $SECONDS
   SLEEP_PERIOD=$(expr $TTL - $SECONDS)
-  echo $SLEEP_PERIOD
-  echo $IP
-  echo ""
   sleep $SLEEP_PERIOD
 done
 ```
 Make it executable: `chmod +x dig.sh`
 
 ## Install and Configure CloudWatch Logs Agent
+
+For observability, you can optionally pipe the response of the `update-item` requests to CloudWatch logs.
 
 For install instructions, follow: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 
