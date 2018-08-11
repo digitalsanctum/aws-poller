@@ -1,8 +1,7 @@
 # aws-poller
-The following describes the setup for an experiment whose purpose is to determine the IP addresses of a specific AWS service.
+The following describes the setup for an experiment to determine the IP addresses of a specific AWS service over time. 
 
-In this case, I'd like to know the IP addresses associated with DynamoDB in the us-east-1 region.
-
+In this case, I'd like to know the IP addresses associated with DynamoDB in the us-east-1 region. A shell script runs on an EC2 instance in an endless loop. For each iteration of the loop, we call `dig` and combine the result with various other metadata we're interested in. We then persist in a DynamoDB table to be queried later and perhaps do things like cross-reference the IP address and timestamp with Flow Log records.
 
 
 ## Create DynamoDB Table
